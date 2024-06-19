@@ -1,3 +1,112 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  overflow-x: hidden;
+}
+.bar {
+  width: 32px;
+  cursor: pinter;
+  height: 2.5px;
+  position: relative;
+  background: black;
+  border-radius: 5px;
+}
+
+.bar::before,
+.bar::after {
+  content: "";
+  cursor: pointer;
+  position: absolute;
+  height: 2.5px;
+  background: black;
+  border-radius: 5px;
+  transition: all 0.4s;
+}
+
+.bar::before {
+  width: 25px;
+  transform: translateY(-8px);
+  right: 0;
+}
+.bar::after {
+  width: 32px;
+  transform: translateY(8px);
+}
+
+.openBar.bar {
+  transform: translateX(-40px);
+  background: transparent;
+}
+
+.openBar.bar::before {
+  width: 32px;
+  transform: rotate(45deg) translate(26px, -26px);
+  background: white;
+}
+
+.openBar.bar::after {
+  width: 32px;
+  transform: rotate(-45deg) translate(26px, 26px);
+  background: white;
+}
+
+.mycalc {
+  height: calc(100%- 70px);
+  /* margin-top: 70px; */
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  transition: all 0.4s;
+}
+
+.returnBack {
+  transform: translateX(0);
+}
+
+.scrollbarHidden::-webkit-scrollbar {
+  display: none;
+}
+.scrollbarHidden {
+  scrollbar-width: none;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.smallLoader {
+  width: 17px;
+  height: 17px;
+  border: 3px solid #fff;
+  border-bottom-color: #f35c7a;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.bigLoader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: #f35c7a;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loading-wrapper {
+  padding-top: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
