@@ -1,13 +1,12 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { authMiddleware } from "@clerk/nextjs";
 
-export default clerkMiddleware({
+// This example protects all routes including api/trpc routes
+// Please edit this to allow other routes to be public as needed.
+// See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your Middleware
+export default authMiddleware({
   publicRoutes: ["/"],
 });
 
 export const config = {
-  matcher: [
-    "/((?!.*\\..*|_next).*)", // Matches all paths except files and _next paths
-    "/", // Matches the root path
-    "/(api|trpc)(.*)", // Matches API and TRPC paths
-  ],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
