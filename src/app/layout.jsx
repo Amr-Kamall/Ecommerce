@@ -1,3 +1,4 @@
+// layout.js
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./globals.css";
@@ -16,11 +17,11 @@ export default function RootLayout({ children }) {
   const clerkFrontendApi = process.env.NEXT_PUBLIC_CLERK_FRONTEND_API_KEY; // Replace with your actual environment variable
   if (!clerkFrontendApi) {
     throw new Error(
-      "Missing NEXT_PUBLIC_CLERK_FRONTEND_API_KEY environment variable"
+      "Missing NEXT_PUBLIC_CLERK_FRONTEND_API_KEY environment variable!"
     );
   }
   return (
-    <ClerkProvider apiKey={clerkFrontendApi}>
+    <ClerkProvider frontendApi={clerkFrontendApi}>
       <CartProvider>
         <html lang="en">
           <head>
