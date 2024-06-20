@@ -13,10 +13,10 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const clerkFrontendApi = process.env.REACT_APP_CLERK_FRONTEND_API_KEY; // Replace with your actual environment variable
+  const clerkFrontendApi = process.env.NEXT_PUBLIC_CLERK_FRONTEND_API_KEY; // Replace with your actual environment variable
   if (!clerkFrontendApi) {
     throw new Error(
-      "Missing REACT_APP_CLERK_FRONTEND_API_KEY environment variable"
+      "Missing NEXT_PUBLIC_CLERK_FRONTEND_API_KEY environment variable"
     );
   }
   return (
