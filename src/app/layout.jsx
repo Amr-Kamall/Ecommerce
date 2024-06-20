@@ -13,10 +13,14 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const clerkFrontendApi = process.env.REACT_APP_CLERK_FRONTEND_API_KEY; // Replace with your actual environment variable
+  if (!clerkFrontendApi) {
+    throw new Error(
+      "Missing REACT_APP_CLERK_FRONTEND_API_KEY environment variable"
+    );
+  }
   return (
-    <ClerkProvider
-      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
-    >
+    <ClerkProvider apiKey={clerkFrontendApi}>
       <CartProvider>
         <html lang="en">
           <head>
