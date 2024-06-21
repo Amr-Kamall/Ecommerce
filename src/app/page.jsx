@@ -6,11 +6,10 @@ import Contact from "./contact/page";
 function HomePage() {
   return (
     <>
-      {/* <Slider /> */}
-      {/* <FeaturedProducts /> */}
-      {/* <Categories /> */}
-      {/* <NewList /> */}
-      <Contact />
+      <Slider />
+      <FeaturedProducts />
+      <Categories />
+      <NewList />
     </>
   );
 }
