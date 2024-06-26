@@ -4,7 +4,6 @@ import ImagesSwap from "../components/ImagesSwap";
 import Add from "../components/Add";
 import SkeltonText from "../components/SkeltonText";
 import { useCart } from "../context/CartContext";
-import axios from "axios";
 
 function ProductDetails({ params }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -18,14 +17,13 @@ function ProductDetails({ params }) {
 
     async function fetchProduct() {
       try {
-        const res = await axios.get(api, {
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-          },
-        });
-
+        const res = await fetch(api);
+        if (!res.ok) {
+          throw new Error(`Error: ${res.status}`);
+        }
+        const data = await res.json();
         if (isMounted) {
-          setSelectedProduct(res.data.data);
+          setSelectedProduct(data.data);
         }
       } catch (err) {
         if (isMounted) {

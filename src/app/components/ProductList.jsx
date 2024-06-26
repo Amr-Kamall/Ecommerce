@@ -13,7 +13,7 @@ function ProductList({ productTitle, productData }) {
             id: product.id,
             name: product.attributes.name,
             price: product.attributes.price,
-            description: product.attributes.description[0].children[0].text,
+            description: product.attributes?.description?.[0].children[0].text,
             quantity: 1,
             image: product.attributes.image.data[0].attributes.url,
           };
