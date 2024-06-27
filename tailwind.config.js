@@ -21,6 +21,7 @@ const config = {
         "3xl": "1600px", // Custom breakpoint for very large screens
         xs: "669px",
         xxs: "450px",
+        mySm: "730px",
       },
     },
   },

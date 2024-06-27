@@ -10,7 +10,7 @@ function ProductDetails({ params }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const api = `http://localhost:1337/api/products/${params.slug}?populate=image`;
+  const api = `http://localhost:1337/api/products/${params.selectedProductSlug}?populate=image`;
 
   useEffect(() => {
     let isMounted = true; // Flag to check if the component is mounted
@@ -47,7 +47,7 @@ function ProductDetails({ params }) {
     return notFound();
   }
 
-  if (params.slug === "favicon.ico") {
+  if (params.selectedProductSlug === "favicon.ico") {
     return null;
   }
 
