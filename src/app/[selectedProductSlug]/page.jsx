@@ -10,7 +10,7 @@ function ProductDetails({ params }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const api = `http://localhost:1337/api/products/${params.selectedProductSlug}?populate=image`;
+  const api = `https://strapi-ecommerce-bw8e.onrender.com/api/products/${params.selectedProductSlug}?populate=image`;
 
   useEffect(() => {
     let isMounted = true; // Flag to check if the component is mounted
