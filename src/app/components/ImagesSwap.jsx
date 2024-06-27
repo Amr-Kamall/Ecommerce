@@ -23,7 +23,7 @@ function ImagesSwap({ swappedImages, loading }) {
               alt="nature"
               width={1000}
               height={1000}
-              className="w-full h-[390px] rounded-md object-cover"
+              className="w-full h-[220px] sm:h-[300px] md:h-[390px] rounded-md object-cover"
             />
           ) : (
             <div className="h-[390px] w-full bg-slate-200 animate-pulse"></div>
