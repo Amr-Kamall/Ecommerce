@@ -15,7 +15,7 @@ async function SearchedProductPage({ params }) {
   );
   if (filteredProducts.length === 0) {
     return (
-      <h1 className="pt-24 text-center text-3xl font-semibold">
+      <h1 className="pt-40 text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-lama">
         product not found!
       </h1>
     );

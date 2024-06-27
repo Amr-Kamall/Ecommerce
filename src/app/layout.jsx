@@ -19,7 +19,8 @@ export default function RootLayout({ children }) {
           <body>
             <Header />
             <Suspense fallback={<Loading />}>
-              <div className="mb-24">{children}</div>
+              <div className="mb-24 min-h-[30vh]">{children}</div>
+              {/* <PageNotFound/> */}
             </Suspense>
             <Footer />
           </body>

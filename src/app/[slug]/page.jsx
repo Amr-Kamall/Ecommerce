@@ -4,13 +4,13 @@ import ImagesSwap from "../components/ImagesSwap";
 import Add from "../components/Add";
 import SkeltonText from "../components/SkeltonText";
 import { useCart } from "../context/CartContext";
+import { notFound } from "next/navigation";
 
 function ProductDetails({ params }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const api = `http://localhost:1337/api/products/${params.slug}?populate=image`;
-  const { quantity, updateCartPrice } = useCart();
 
   useEffect(() => {
     let isMounted = true; // Flag to check if the component is mounted
@@ -44,7 +44,7 @@ function ProductDetails({ params }) {
   }, [api]);
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return notFound();
   }
 
   if (params.slug === "favicon.ico") {

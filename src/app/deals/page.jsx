@@ -32,10 +32,10 @@ async function DealsPage() {
               <Link
                 href={`/${
                   deal.attributes.name === "White T-Shirt"
-                    ? 23
+                    ? 30
                     : deal.attributes.name === "Tote Bag"
-                    ? 16
-                    : 9
+                    ? 10
+                    : 29
                 }?product=${deal.attributes.name}`}
                 className="group relative block"
               >

@@ -1,6 +1,6 @@
 export async function getFeaturedProduct() {
   const api =
-    "https://strapi-ecommerce-bw8e.onrender.com/api/categories/2?fields=name&populate[products][populate]=image";
+    "https://strapi-ecommerce-bw8e.onrender.com/api/categories/5?fields=name&populate[products][populate]=image";
   const res = await fetch(api, {
     next: { revalidate: 5 },
   });
@@ -33,7 +33,7 @@ export async function getAllProducts() {
 }
 export async function getNewsProduct() {
   const api =
-    "https://strapi-ecommerce-bw8e.onrender.com/api/categories/3?fields=name&populate[products][populate]=image";
+    "https://strapi-ecommerce-bw8e.onrender.com/api/categories/6?fields=name&populate[products][populate]=image";
   const res = await fetch(api, {
     next: { revalidate: 5 },
   });

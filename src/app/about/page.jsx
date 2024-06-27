@@ -3,7 +3,7 @@ import React from "react";
 
 function AboutPage() {
   return (
-    <div className="sm:flex items-center mx-auto pt-24 w-4/5">
+    <div className="sm:flex items-center mx-auto pt-28 w-4/5">
       <div className="sm:w-1/2 px-10">
         <div className="image object-center text-center">
           <Image
@@ -21,7 +21,7 @@ function AboutPage() {
             About us
           </span>
           <h2 className="my-4 font-bold text-3xl  sm:text-4xl ">
-            About <span className="text-lama">Our Company</span>
+            About <span className="text-lama">Our TrendMart</span>
           </h2>
           <p className="text-gray-700">
             we are more than just a shopping destination. We are a community of
