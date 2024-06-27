@@ -47,7 +47,7 @@ const CheckoutForm = ({ amount }) => {
       clientSecret,
       elements,
       confirmParams: {
-        return_url: "http://localhost:3000/payment-confirm",
+        return_url: "https://e-commerce-rosy-chi.vercel.app/payment-confirm",
       },
     });
 
