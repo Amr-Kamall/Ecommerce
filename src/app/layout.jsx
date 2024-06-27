@@ -6,6 +6,12 @@ import { ClerkProvider } from "@clerk/nextjs";
 import CartProvider from "./context/CartContext";
 import { Suspense } from "react";
 import Loading from "./loading";
+
+export const metadata = {
+  title: "TRENDMARKET",
+  description:
+    "we are more than just a shopping destination. We are a community of passionate individuals who share a love for great products and excellent service. Follow us on social media to stay updated on the latest arrivals, special offers, and exclusive promotions.",
+};
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider
