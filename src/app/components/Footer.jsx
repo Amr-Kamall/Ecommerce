@@ -8,7 +8,7 @@ function Footer() {
   if (pathname === "/sign-up" || pathname === "/sign-in") return;
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 min-h-[400px]">
       {/* wrapper */}
       <div className="py-6 w-4/5 mx-auto text-sm">
         {/* TOP */}
