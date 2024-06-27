@@ -30,7 +30,7 @@ function Header() {
         <Link href="/">
           <div className="logo flex gap-2 items-center">
             <Image src="/logo.png" alt="img" width={20} height={20} />
-            <span className="text-xl xl:text-2xl font-semibold cursor-pointer tracking-wider uppercase">
+            <span className="text-xl xl:text-2xl font-semibold cursor-pointer tracking-wider uppercase contain-layout">
               TrendMart
             </span>
           </div>
