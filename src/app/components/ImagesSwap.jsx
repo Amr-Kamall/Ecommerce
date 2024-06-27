@@ -26,7 +26,7 @@ function ImagesSwap({ swappedImages, loading }) {
               className="w-full h-[220px] sm:h-[300px] md:h-[390px] rounded-md object-cover"
             />
           ) : (
-            <div className="h-[390px] w-full bg-slate-200 animate-pulse"></div>
+            <div className="h-[220px] sm:h-[390px] w-full bg-slate-200 animate-pulse"></div>
           )}
           {/* small images */}
           <div className="flex items-center w-full max-h-full gap-3 ">
@@ -44,7 +44,7 @@ function ImagesSwap({ swappedImages, loading }) {
                 />
               ))
             ) : (
-              <div className="h-[100px] w-full bg-slate-200 animate-pulse"></div>
+              <div className=" h-[40px] sm:h-[100px] w-full bg-slate-200 animate-pulse"></div>
             )}
           </div>
         </div>
