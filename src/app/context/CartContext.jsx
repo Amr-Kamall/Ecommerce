@@ -30,14 +30,14 @@ function CartProdvider({ children }) {
       router.push("/sign-up");
     }
     const searchedProduct = cart?.find((pro) => pro?.id === product.id);
-    console.log(searchedProduct);
+    // console.log(searchedProduct);
     if (searchedProduct === undefined) {
       setCart([...cart, product]);
     } else {
       return null;
     }
   }
-  console.log(cart);
+  console.log(cart)
 
   // remove product from the cart
   function handleRemoveProduct(productId) {

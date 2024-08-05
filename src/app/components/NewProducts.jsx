@@ -1,11 +1,16 @@
-import { getNewsProduct } from "../../../lib";
+"use client";
+import { allProducts } from "../data/data";
 import ProductList from "./ProductList";
 
-async function NewList() {
-  const data = await getNewsProduct();
-  // console.log(data.attributes.products);
-  const NewsData = data.attributes.products.data;
-  return <ProductList productTitle="New Products" productData={NewsData} />;
+function NewList() {
+  const news = allProducts.filter((pro) => pro.category === "News");
+  const NewsData = news;
+  return (
+    <>
+      <h1>amr kamal</h1>
+      <ProductList productTitle="New Products" productData={NewsData} />;
+    </>
+  );
 }
 
 export default NewList;

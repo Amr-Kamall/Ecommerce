@@ -1,11 +1,11 @@
 export async function getFeaturedProduct() {
-  const api =
-    "https://strapi-ecommerce-bw8e.onrender.com/api/categories/5?fields=name&populate[products][populate]=image";
+  const api = "https://api.escuelajs.co/api/v1/products";
   const res = await fetch(api, {
     next: { revalidate: 5 },
   });
   const data = await res.json();
-  return data.data;
+  const first4Objects = data.slice(20, 24);
+  return first4Objects;
 }
 
 // {
@@ -13,32 +13,28 @@ export async function getFeaturedProduct() {
 // }
 
 export async function getCategories() {
-  const api =
-    "https://strapi-ecommerce-bw8e.onrender.com/api/categories?fields=name&populate=image";
-  const res = await fetch(api, {
-    next: { revalidate: 5 },
-  });
+  const api = "https://api.escuelajs.co/api/v1/categories";
+  const res = await fetch(api);
   const data = await res.json();
-  return data.data;
+  const first8Objects = data.slice(1, 5);
+  return first8Objects;
 }
 
 export async function getAllProducts() {
-  const api =
-    "https://strapi-ecommerce-bw8e.onrender.com/api/categories/1?fields=name&populate[products][populate]=image";
+  const api = "https://api.escuelajs.co/api/v1/products";
   const res = await fetch(api, {
     next: { revalidate: 5 },
   });
   const data = await res.json();
-  return data.data.attributes.products.data;
+  const first20Objects = data.slice(12, 48);
+  return first20Objects;
 }
 export async function getNewsProduct() {
-  const api =
-    "https://strapi-ecommerce-bw8e.onrender.com/api/categories/6?fields=name&populate[products][populate]=image";
-  const res = await fetch(api, {
-    next: { revalidate: 5 },
-  });
+  const api = "https://api.escuelajs.co/api/v1/products";
+  const res = await fetch(api);
   const data = await res.json();
-  return data.data;
+  const first4Objects = data.slice(33, 37);
+  return first4Objects;
 }
 
 export async function getCategoryProduct(id) {
@@ -53,8 +49,9 @@ export async function getCategoryProduct(id) {
 // const api = https://strapi-ecommerce-bw8e.onrender.com/api/products?populate=image;
 
 export async function getDeals() {
-  const api =
-    "https://strapi-ecommerce-bw8e.onrender.com/api/deals?populate=image";
+  // "https://strapi-ecommerce-bw8e.onrender.com/api/deals?populate=image";
+  const api = "https://api.escuelajs.co/api/v1/products";
+
   const res = await fetch(api, {
     next: { revalidate: 5 },
   });

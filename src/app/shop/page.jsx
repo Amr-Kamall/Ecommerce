@@ -2,11 +2,12 @@ import React, { Suspense } from "react";
 import ProductList from "../components/ProductList";
 import { getAllProducts } from "../../../lib";
 import Banner from "../components/Banner";
-import Loading from "../loading";
-// import FilterProducts from "../components/FilterProducts";
+import { allProducts } from "../data/data";
 
 async function ShopPage() {
-  const products = await getAllProducts();
+  // const products = await getAllProducts();
+  // console.log(products);
+  const products = allProducts;
 
   return (
     <div>

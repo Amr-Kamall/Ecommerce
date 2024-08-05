@@ -4,10 +4,10 @@ import { useState } from "react";
 
 function ImagesSwap({ swappedImages, loading }) {
   // console.log(swappedImages.data);
-  const image1 = swappedImages?.data[0].attributes.url;
-  const image2 = swappedImages?.data[1].attributes.url;
-  const image3 = swappedImages?.data[2].attributes.url;
-  const image4 = swappedImages?.data[3].attributes.url;
+  const image1 = swappedImages?.[0];
+  const image2 = swappedImages?.[1];
+  const image3 = swappedImages?.[2];
+  const image4 = swappedImages?.[3];
   const images = [image1, image2, image3, image4];
   //
   const [selectedImage, setSelectedImage] = useState(0);

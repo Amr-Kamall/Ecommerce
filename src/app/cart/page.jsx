@@ -13,7 +13,7 @@ function CartPage() {
     handleQuantityIncrement,
     updateCartPrice,
   } = useCart();
-  console.log(cart);
+  // console.log(cart);
   return (
     <section className="pt-24 relative">
       {cart.length >= 1 ? (
@@ -29,7 +29,7 @@ function CartPage() {
             >
               <div className="col-span-12 lg:col-span-2 img box">
                 <Image
-                  src={product.image}
+                  src={product.image[0]}
                   alt="speaker image"
                   width={400}
                   height={400}

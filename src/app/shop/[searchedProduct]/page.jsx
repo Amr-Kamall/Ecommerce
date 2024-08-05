@@ -1,17 +1,16 @@
 import React from "react";
-import { getAllProducts } from "../../../../lib";
 import Link from "next/link";
 import Image from "next/image";
 import AddToCart from "../../components/AddToCart";
+import { allProducts } from "../../data/data";
 
 async function SearchedProductPage({ params }) {
   const searchedProduct = params.searchedProduct;
-  const products = await getAllProducts();
-  console.log(products);
-  console.log("merroooooo");
+  const products = allProducts;
+
 
   const filteredProducts = products.filter((pro) =>
-    pro.attributes.name.toLowerCase().includes(searchedProduct.toLowerCase())
+    pro.name.toLowerCase().includes(searchedProduct.toLowerCase())
   );
   if (filteredProducts.length === 0) {
     return (
@@ -26,11 +25,11 @@ async function SearchedProductPage({ params }) {
         {filteredProducts.map((product) => {
           const productDetails = {
             id: product.id,
-            name: product.attributes.name,
-            price: product.attributes.price,
-            description: product.attributes.description[0].children[0].text,
+            name: product.name,
+            price: product.price,
+            description: product.description,
             quantity: 1,
-            image: product.attributes.image.data[0].attributes.url,
+            image: product.image[0],
           };
           return (
             <div
@@ -39,18 +38,18 @@ async function SearchedProductPage({ params }) {
             >
               <div className="rounded-md w-full bg-blue-300 h-full relative flex justify-center items-center">
                 <Link
-                  href={`/${product.id}?product=${product.attributes.name}`}
+                  href={`/${product.id}?product=${product.name}`}
                 >
                   <Image
                     className="h-[230px] object-cover md:w-full left-0 right-0 top-0 absolute rounded-md z-20 hover:opacity-0 transition-all duration-500"
-                    src={product.attributes.image.data[0].attributes.url}
+                    src={product.image[0]}
                     alt="img"
                     width={1000}
                     height={1000}
                   />
                   <Image
                     className="h-[230px] sm:min-w-[200px] min-w-[280px] rounded-md object-cover"
-                    src={product.attributes.image.data[1].attributes.url}
+                    src={product.image[1]}
                     alt="img"
                     width={1000}
                     height={1000}
@@ -58,8 +57,8 @@ async function SearchedProductPage({ params }) {
                 </Link>
               </div>
               <div className="flex w-full justify-between items-center">
-                <p className="font-semibold">{product.attributes.name}</p>
-                <p className="font-semibold">${product.attributes.price}</p>
+                <p className="font-semibold">{product.name}</p>
+                <p className="font-semibold">${product.price}</p>
               </div>
               <div className="text-sm text-gray-500">perfect organic mean</div>
               <div className="mt-1">

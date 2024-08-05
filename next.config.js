@@ -3,11 +3,20 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
+      "products.com",
       "images.pexels.com",
       "img.freepik.com",
       "res.cloudinary.com",
       "images.unsplash.com",
       "i.imgur.com",
+      "www.google.com",
+      "placeimg.com",
+      "api.escuelajs.co",
+      "www.gravatar.com",
+      "imgur.com",
+      "api.lorem.space",
+      "fakestoreapi.com",
+      "contoh.com",
     ],
   },
   env: {

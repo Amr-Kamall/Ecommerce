@@ -1,10 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import { getDeals } from "../../../lib";
 import Link from "next/link";
+import { deals } from "../data/data";
 
-async function DealsPage() {
-  const deals = await getDeals();
+ function DealsPage() {
   return (
     <section>
       <div className="mx-auto w-4/5 pt-24 px-4">
@@ -24,23 +23,23 @@ async function DealsPage() {
             <li
               key={deal.id}
               className={
-                deal.attributes.name === "White T-Shirt"
+                deal.name === "Tote Bag"
                   ? "lg:col-span-2 lg:col-start-2 lg:row-span-2 lg:row-start-1"
                   : ""
               }
             >
               <Link
                 href={`/${
-                  deal.attributes.name === "White T-Shirt"
-                    ? 30
-                    : deal.attributes.name === "Tote Bag"
-                    ? 10
-                    : 29
-                }?product=${deal.attributes.name}`}
+                  deal.name === "V-Neck T-Shirt"
+                    ? 4
+                    : deal.name === "Tote Bag"
+                    ? 16
+                    : 7
+                }?product=${deal.name}`}
                 className="group relative block"
               >
                 <Image
-                  src={deal.attributes.image.data.attributes.url}
+                  src={deal.image[0]}
                   alt="img"
                   width={1000}
                   height={1000}
@@ -52,7 +51,7 @@ async function DealsPage() {
                     className="text-xl font-medium text-white"
                     style={{ textShadow: "#000  1px 0 10px" }}
                   >
-                    {deal.attributes.name}
+                    {deal.name}
                   </h3>
 
                   <span className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
