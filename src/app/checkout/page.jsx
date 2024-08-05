@@ -12,6 +12,7 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHER_KEY);
 function Checkout() {
   const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
+  console.log(Number(searchParams.get("amount")) * 100);
   const { cart } = useCart();
 
   useEffect(() => {
@@ -43,7 +44,7 @@ function Checkout() {
 
   return (
     <Elements stripe={stripePromise} options={options}>
-      <CheckoutForm amount={Number(searchParams.get("amount"))} />
+      <CheckoutForm amount={Number(searchParams.get("amount")) * 100} />
     </Elements>
   );
 }
