@@ -44,7 +44,7 @@ function Checkout() {
 
   return (
     <Elements stripe={stripePromise} options={options}>
-      <CheckoutForm amount={Number(searchParams.get("amount")) * 100} />
+      <CheckoutForm amount={Number(searchParams.get("amount"))} />
     </Elements>
   );
 }
