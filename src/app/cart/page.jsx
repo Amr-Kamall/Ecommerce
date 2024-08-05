@@ -29,7 +29,7 @@ function CartPage() {
             >
               <div className="col-span-12 lg:col-span-2 img box">
                 <Image
-                  src={product.image[0]}
+                  src={product.image}
                   alt="speaker image"
                   width={400}
                   height={400}

@@ -2,131 +2,86 @@
 import { useContext, useState, createContext, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import { usePathname, useRouter } from "next/navigation";
+
 const CartContext = createContext();
 
-function CartProdvider({ children }) {
+function CartProvider({ children }) {
   const router = useRouter();
   const { user } = useUser();
-  const [quantity, setQuantity] = useState(1);
   const pathname = usePathname();
-
-  const ls = typeof window !== "undefined" ? window.localStorage : null;
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    if (ls && ls.getItem("cart")) {
-      setCart(JSON.parse(ls.getItem("cart")));
+    const ls = typeof window !== "undefined" ? window.localStorage : null;
+    if (ls) {
+      const savedCart = ls.getItem("cart");
+      if (savedCart) {
+        setCart(JSON.parse(savedCart));
+      }
     }
-  }, [ls]);
+  }, []);
 
   useEffect(() => {
-    if (cart?.length > 0) {
-      ls?.setItem("cart", JSON.stringify(cart));
+    const ls = typeof window !== "undefined" ? window.localStorage : null;
+    if (ls && cart.length > 0) {
+      ls.setItem("cart", JSON.stringify(cart));
     }
-  }, [cart, ls]);
-  // add to cart function
+  }, [cart]);
+
   function handleAddToCart(product) {
     if (!user) {
       router.push("/sign-up");
+      return;
     }
-    const searchedProduct = cart?.find((pro) => pro?.id === product.id);
-    // console.log(searchedProduct);
-    if (searchedProduct === undefined) {
-      setCart([...cart, product]);
-    } else {
-      return null;
+    const searchedProduct = cart.find((pro) => pro.id === product.id);
+    if (!searchedProduct) {
+      setCart([...cart, { ...product, quantity: 1 }]);
     }
   }
-  console.log(cart)
 
-  // remove product from the cart
   function handleRemoveProduct(productId) {
-    const searchedProduct = cart.find((pro) => pro.id === productId);
-    console.log(searchedProduct);
-    if (searchedProduct) {
-      setCart((cart) =>
-        cart.filter((product) => product.id !== searchedProduct.id)
-      );
-    }
+    setCart(cart.filter((product) => product.id !== productId));
   }
 
-  // increase quantity
   function handleQuantityDecrement(product) {
-    // before we decrease quantity we should check that we are in the selected product
-    const selectedItem = cart.find((item) => item.id === product.id);
-
-    selectedItem.quantity > 1
-      ? setCart(
-          cart.map((item) =>
-            item.id === product.id
-              ? { ...item, quantity: item.quantity - 1 }
-              : item
-          )
-        )
-      : setCart((cart) => cart.filter((item) => item.id !== product.id));
-    updateCartPrice(product);
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === product.id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      ).filter(item => item.quantity > 0)
+    );
   }
-  // decrease quantity
+
   function handleQuantityIncrement(product) {
-    // before we increase quantity we should check that we are in the selected product
-    setQuantity((q) => q + 1);
-    setCart(
-      cart.map((pro) =>
-        pro.id === product.id
-          ? {
-              ...pro,
-              quantity: pro.quantity + 1,
-            }
-          : pro
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === product.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
       )
     );
-    // setCart((products) =>
-    //   products.map((pro) =>
-    //     pro.id === product.id ? { ...pro, quantity: pro.quantity + 1 } : pro
-    //   )
-    // );
-    updateCartPrice(product);
   }
 
-  // updated price
   function updateCartPrice(product) {
-    const selectedId = product.id;
-    console.log(selectedId); //36
-    const selectedItem = cart.find((item) => item.id === selectedId);
-    console.log(selectedItem); //get undefined
-    const updatePrice =
-      Number(selectedItem?.price) * Number(selectedItem?.quantity);
-    return updatePrice.toFixed(2);
+    const selectedItem = cart.find((item) => item.id === product.id);
+    if (!selectedItem) return "0.00";
+    return (selectedItem.price * selectedItem.quantity).toFixed(2);
   }
 
-  //calculate sum of price
   function calculateSumPrice() {
     const sum = cart.reduce(
-      (acc, pro) => acc + pro.price * (pro.quantity || 1),
+      (acc, pro) => acc + pro.price * pro.quantity,
       0
     );
     return sum.toFixed(2);
   }
 
-  //
-
-  useEffect(
-    function () {
-      // check pathname
-      if (pathname.startsWith("/payment-confirm")) {
-        setCart([]);
-      }
-    },
-    [pathname, setCart]
-  );
-
-  // store data in local storage
-  useEffect(
-    function () {
-      localStorage.setItem("cart", JSON.stringify(cart));
-    },
-    [cart]
-  );
+  useEffect(() => {
+    if (pathname.startsWith("/payment-confirm")) {
+      setCart([]);
+    }
+  }, [pathname]);
 
   return (
     <CartContext.Provider
@@ -139,7 +94,6 @@ function CartProdvider({ children }) {
         handleQuantityDecrement,
         handleQuantityIncrement,
         updateCartPrice,
-        quantity,
       }}
     >
       {children}
@@ -148,12 +102,11 @@ function CartProdvider({ children }) {
 }
 
 export function useCart() {
-  //create our custom hook to use the context in every place
   const context = useContext(CartContext);
   if (context === undefined) {
-    throw new Error("Cities context was used outside the CitiesProvider ");
+    throw new Error("Cart context was used outside the CartProvider.");
   }
   return context;
 }
 
-export default CartProdvider;
+export default CartProvider;
