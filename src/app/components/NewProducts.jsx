@@ -7,7 +7,7 @@ function NewList() {
   const NewsData = news;
   return (
     <>
-      <h1>amr kamal</h1>
+      {/* <h1>amr kamal</h1> */}
       <ProductList productTitle="New Products" productData={NewsData} />;
     </>
   );
